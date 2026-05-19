@@ -435,6 +435,62 @@
       .proj-nav { grid-template-columns: 1fr; }
       .proj-nav-item + .proj-nav-item { border-left: none; border-top: 1px solid var(--border); }
     }
+
+    /* ── LIGHTBOX ────────────────────────────────── */
+    .zoomable { cursor: zoom-in; }
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0,0,0,0);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, background .3s ease;
+    }
+    #lightbox.lb-open {
+      opacity: 1;
+      visibility: visible;
+      background: rgba(0,0,0,.92);
+      cursor: zoom-out;
+    }
+    #lightbox img {
+      max-width: min(92vw, 1200px);
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 10px;
+      cursor: default;
+      transform: scale(0.88);
+      opacity: 0;
+      transition: transform .38s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity .28s ease;
+      user-select: none;
+    }
+    #lightbox.lb-open img {
+      transform: scale(1);
+      opacity: 1;
+    }
+    #lb-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,.12);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+      flex-shrink: 0;
+    }
+    #lb-close:hover { background: rgba(255,255,255,.24); }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -738,9 +794,55 @@
       // ── Init sliders and fade animations
       initSliders();
       requestAnimationFrame(() => observeFades());
+      initLightbox();
+    }
+
+    // ── Lightbox ─────────────────────────────────────────────────
+    function initLightbox() {
+      const lb    = document.getElementById('lightbox');
+      const lbImg = lb.querySelector('img');
+
+      // Mark all content images as zoomable
+      document.querySelectorAll('.c-image img, .c-duo-grid img, .c-slider-track img')
+        .forEach(img => img.classList.add('zoomable'));
+
+      function openLb(src, alt) {
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lb.classList.add('lb-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLb() {
+        lb.classList.remove('lb-open');
+        document.body.style.overflow = '';
+        setTimeout(() => { lbImg.src = ''; }, 380);
+      }
+
+      // Delegate clicks on content images
+      document.getElementById('proj-content').addEventListener('click', e => {
+        const img = e.target.closest('img');
+        if (img) openLb(img.src, img.alt);
+      });
+
+      lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+      document.getElementById('lb-close').addEventListener('click', closeLb);
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && lb.classList.contains('lb-open')) closeLb();
+      });
     }
 
     init();
   </script>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
+    <button id="lb-close" aria-label="Fechar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <img src="" alt="">
+  </div>
 </body>
 </html>
