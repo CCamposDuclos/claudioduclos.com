@@ -1,50 +1,144 @@
 [
   {
-    "id": "fintech-dashboard",
-    "title": "Fintech Dashboard",
-    "client": "Fintec Corp",
-    "category": "UX Design · Desenvolvimento",
+    "id": "locfy",
+    "title": "Locfy: Marketplace de aluguel de veículos do zero ao lançamento.",
+    "client": "Locfy",
+    "category": "Marketplace · Mobile App",
     "year": "2025",
-    "description": "Um dashboard financeiro completo com visualizações de dados em tempo real, gestão de portfólio e análise preditiva. O projeto envolveu pesquisa extensa com usuários, prototipagem iterativa e desenvolvimento frontend com foco em performance e usabilidade em cenários de alta densidade de informação.",
-    "tags": ["UX Design", "Desenvolvimento", "React", "Data Viz"],
-    "gradient": "linear-gradient(135deg, #0d1b3e 0%, #1a2d5a 40%, #0a1628 100%)",
     "link": "",
+    "description": "Plataforma mobile-first que tirou a negociação de aluguel de veículos dos grupos de Facebook e entregou um ambiente estruturado, seguro e preparado para crescer.",
+    "tags": ["UI Design", "UX Design", "Wireframe", "Marketplace", "Mobile", "Web"],
+    "coverImage": "assets/locfy1.jpg",
+    "gradient": "linear-gradient(135deg, #0d1b3e 0%, #1a2d5a 40%, #0a1628 100%)",
+    "body": [
+      {
+        "type": "section",
+        "title": "Migrar usuários é um desafio",
+        "value": "O mercado de aluguel de veículos para motoristas de aplicativo vivia nos grupos de Facebook: informal, sem garantias, sem estrutura. A proposta da Locfy chegou para mudar isso, e meu desafio foi transformar essa proposta em uma interface que as pessoas realmente quisessem usar."
+      },
+      {
+        "type": "image",
+        "src": "assets/locfy3.jpg",
+        "alt": "",
+        "caption": ""
+      },
+      {
+        "type": "section",
+        "title": "⚠️ Um alerta antes de continuar",
+        "value": "Se o seu interesse é no visual (UI Design) do projeto, te entrego de bandeja na próxima seção.\n\nAgora se quiser entender um pouco mais de como funciona a mente de um designer, continua acompanhando meu processo."
+      },
+      {
+        "type": "slider",
+        "images": [
+          { "src": "assets/locfy5.jpg", "alt": "" },
+          { "src": "assets/locfy6.jpg", "alt": "" }
+        ],
+        "caption": ""
+      },
+      {
+        "type": "section",
+        "title": "Mergulhando no problema",
+        "value": "Os grupos de Facebook enfrentavam excesso de mensagens, falta de padronização e nenhuma garantia de ambos os lados. Migrar esses usuários para fora da zona de conforto seria complexo, envolve confiança, senso de comunidade. Como designer, a primeira impressão é sempre a que fica. Apostamos em uma interface que eliminaria essa desconfiança sem perder a proximidade que o mercado informal já tinha."
+      },
+      {
+        "type": "section",
+        "title": "A ideia começa a tomar forma",
+        "value": "Fiz um benchmark de marketplaces consolidados, estruturei um onboarding duplo. Um para quem aluga, outro para quem disponibiliza o veículo. Cada decisão foi pensada para reduzir fricção: cadastro visual, fluxo claro, padrões que já eram familiares ao usuário. Aqui, o caminho feliz começou a tomar forma."
+      },
+      {
+        "type": "image",
+        "src": "assets/locfy4.jpg",
+        "alt": "",
+        "caption": ""
+      },
+      {
+        "type": "section",
+        "title": "Uma Landing Page, duas mensagens",
+        "value": "O ecossistema Locfy foi construído com uma Landing Page que comunicava sua proposta para os dois perfis ao mesmo tempo. Para quem busca: um marketplace com filtros avançados e comunicação descomplicada. Para quem anuncia: um onboarding guiado até o primeiro anúncio, com uma Dashboard limpa e focada."
+      },
+      {
+        "type": "image",
+        "src": "assets/locfy7.jpg",
+        "alt": "",
+        "caption": ""
+      },
+      {
+        "type": "section",
+        "title": "A Locfy me fez explorar um novo segmento",
+        "value": "Quando falo dos desafios não é conversa institucional. Eu moldei minha carreira através deles. A Locfy me permitiu explorar diferentes formatos de entrega — Landing Page, Marketplace, Dashboard com Onboarding guiado, todos responsivos.\n\nO resultado? Um MVP de ponta a ponta concluído em 6 semanas. (Uma das equipes mais sensacionais que já trabalhei)"
+      }
+    ],
     "order": 1
   },
   {
-    "id": "nomad-app",
-    "title": "Nomad App",
-    "client": "Nomad Inc.",
-    "category": "Mobile · Product Design",
+    "id": "accithus",
+    "title": "Accithus: Estruturando uma processadora de pagamentos do início ao fim.",
+    "client": "Accithus",
+    "category": "Fintech · SaaS B2B",
     "year": "2025",
-    "description": "Aplicativo mobile para nômades digitais com funcionalidades de gestão de rotinas, espaços de trabalho e comunidade. Design focado em clareza e rapidez de uso, com onboarding simplificado, navegação intuitiva e suporte offline para uso em qualquer lugar do mundo.",
-    "tags": ["Mobile", "Product Design", "Figma", "iOS"],
+    "link": "",
+    "description": "Plataforma completa para uma processadora de pagamentos moderna. Do onboarding ao dashboard financeiro, desenhada para funcionar em qualquer dispositivo.",
+    "tags": ["UI/UX Design", "Fintech", "Responsivo", "Design System", "Mobile", "Web"],
+    "coverImage": "assets/accithus1.jpg",
     "gradient": "linear-gradient(145deg, #2a1106 0%, #1a0a00 60%, #0d0500 100%)",
-    "link": "",
+    "body": [
+      {
+        "type": "section",
+        "title": "O bom do design é ser desafiado",
+        "value": "E o desafio Accithus foi estruturar um produto flexível em um mercado \"saturado\" (bem entre aspas). Minha principal ferramenta foi o \"benchmark\", que me permitiu entender o que já existe, o que funciona, o que não funciona, e como misturar tudo numa fórmula quase perfeita."
+      },
+      {
+        "type": "image",
+        "src": "assets/accithus3.jpg",
+        "alt": "",
+        "caption": ""
+      },
+      {
+        "type": "section",
+        "title": "⚠️ Um alerta antes de continuar",
+        "value": "Se o seu interesse é no visual (UI Design) do projeto, te entrego de bandeja na próxima seção.\n\nAgora se quiser entender um pouco mais de como funciona a mente de um designer, continua acompanhando meu processo."
+      },
+      {
+        "type": "slider",
+        "images": [
+          { "src": "assets/accithus5.jpg", "alt": "" },
+          { "src": "assets/accithus6.jpg", "alt": "" }
+        ],
+        "caption": "O resultado final ficou bem parecido (parabéns desenvolvedor)"
+      },
+      {
+        "type": "section",
+        "title": "As jornadas e fluxos",
+        "value": "Benchmark não é só reunir referências visuais — é mergulhar na perspectiva de quem consome aquele produto. Com esse olhar, mapeei os fluxos e jornadas junto aos stakeholders, discutindo limitações técnicas, MVP e o que valia deixar pra depois.\n\nEssa fase é a estrutura que sustenta tudo que vem a seguir."
+      },
+      {
+        "type": "section",
+        "title": "A mesma experiência em diferentes formatos",
+        "value": "Comecei pela Dashboard na visão Web, um início clássico que alinha expectativas visuais com os stakeholders. A partir dos feedbacks, os fluxos ganharam vida com base no Style Guide do projeto. Essa foi a chave: a consistência das variáveis que tornou a transição de Web para Mobile natural, sem retrabalho."
+      },
+      {
+        "type": "image",
+        "src": "assets/accithus2.jpg",
+        "alt": "",
+        "caption": ""
+      },
+      {
+        "type": "section",
+        "title": "A importância do processo",
+        "value": "A validação de cada fluxo era contínua, observada em tempo real pelo Figma junto aos stakeholders. Bater cabeça no início para só se preocupar com pequenos ajustes no final, essa é a entrega limpa que o processo garante."
+      },
+      {
+        "type": "image",
+        "src": "assets/accithus4.jpg",
+        "alt": "",
+        "caption": ""
+      },
+      {
+        "type": "section",
+        "title": "Accithus foi um dos meus desafios favoritos.",
+        "value": "Me diverti com esse projeto e acredito na entrega final. O processo foi mais longo do que esses parágrafos fazem parecer, mas se quiser saber mais, é só entrar em contato."
+      }
+    ],
     "order": 2
-  },
-  {
-    "id": "brand-system",
-    "title": "Brand System",
-    "client": "Volta Studio",
-    "category": "Branding · Web Design",
-    "year": "2024",
-    "description": "Sistema de identidade visual completo para uma agência criativa, incluindo logo, tipografia, paleta de cores, iconografia e aplicações digitais e físicas. O projeto resultou em um brand book de 80 páginas e um design system web implementado em produção.",
-    "tags": ["Branding", "Web Design", "Identidade Visual", "Design System"],
-    "gradient": "linear-gradient(135deg, #091f1f 0%, #0d2d2d 60%, #061414 100%)",
-    "link": "",
-    "order": 3
-  },
-  {
-    "id": "ai-studio",
-    "title": "AI Studio",
-    "client": "Synthex Labs",
-    "category": "Interface · Desenvolvimento",
-    "year": "2024",
-    "description": "Interface para uma ferramenta de criação com IA generativa. O desafio foi tornar um produto técnico complexo acessível e intuitivo para criadores não-técnicos, com foco em fluxos de trabalho rápidos, feedback visual rico e experiência fluida em todas as etapas do processo criativo.",
-    "tags": ["Interface", "Desenvolvimento", "AI", "Design System"],
-    "gradient": "linear-gradient(135deg, #130d25 0%, #1e1040 60%, #0a0618 100%)",
-    "link": "",
-    "order": 4
   }
 ]

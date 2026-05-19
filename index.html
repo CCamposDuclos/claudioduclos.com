@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Claudio Duclos — UI/UX Designer</title>
   <meta name="description" content="UI/UX Designer com 5 anos de experiência em produto digital. Especialista em SaaS, fintechs e sistemas complexos.">
@@ -523,19 +524,19 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: rgba(10,10,10,.55);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,.15);
+      background: var(--white);
+      border: 1px solid var(--white);
+      color: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: background .25s, border-color .25s;
+      transition: background .25s, border-color .25s, color .25s;
     }
     .card:hover .card-arrow {
-      background: var(--white);
-      border-color: var(--white);
-      color: var(--bg);
+      background: var(--bg);
+      border-color: var(--bg);
+      color: var(--white);
     }
     .card-arrow svg { width: 15px; height: 15px; }
 
@@ -582,7 +583,7 @@
       line-height: 1.35;
       max-width: 720px;
       margin: 0 auto 52px;
-      color: rgba(242,242,242,.85);
+      color: var(--white);
     }
 
     /* ── FOOTER ──────────────────────────────────── */
