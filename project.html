@@ -621,11 +621,11 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="index.html" class="nav-logo">Claudio Duclos</a>
+    <a href="/" class="nav-logo">Claudio Duclos</a>
     <ul class="nav-links">
-      <li><a href="index.html#sobre">Sobre</a></li>
-      <li><a href="index.html#projetos">Trabalhos</a></li>
-      <li><a href="index.html#contato">Contato</a></li>
+      <li><a href="/#sobre">Sobre</a></li>
+      <li><a href="/#projetos">Trabalhos</a></li>
+      <li><a href="/#contato">Contato</a></li>
     </ul>
     <div class="nav-social">
       <a href="https://linkedin.com/in/claudioduclos" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -655,7 +655,7 @@
     <div class="proj-hero-bg skeleton" id="proj-bg" style="min-height:520px"></div>
     <div class="proj-hero-overlay"></div>
     <div class="proj-hero-content">
-      <a href="index.html#projetos" class="back-btn">
+      <a href="/#projetos" class="back-btn">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
         </svg>
@@ -720,9 +720,9 @@
   <!-- MOBILE DRAWER -->
   <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
     <ul>
-      <li><a href="index.html#sobre"    class="drawer-link">Sobre</a></li>
-      <li><a href="index.html#projetos" class="drawer-link">Trabalhos</a></li>
-      <li><a href="index.html#contato"  class="drawer-link">Contato</a></li>
+      <li><a href="/#sobre"    class="drawer-link">Sobre</a></li>
+      <li><a href="/#projetos" class="drawer-link">Trabalhos</a></li>
+      <li><a href="/#contato"  class="drawer-link">Contato</a></li>
     </ul>
     <div class="nav-drawer-social">
       <a href="https://linkedin.com/in/claudioduclos" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -928,14 +928,17 @@
 
     // ── Init ─────────────────────────────────────────────────────
     async function init() {
-      const params = new URLSearchParams(location.search);
-      const id = params.get('id');
-      if (!id) { location.href = 'index.html'; return; }
+      // Support both /projetos/:slug (clean URL) and ?id=:slug (fallback)
+      const slugMatch = location.pathname.match(/\/projetos\/([^/]+)/);
+      const id = slugMatch ? slugMatch[1] : new URLSearchParams(location.search).get('id');
+      if (!id) { location.href = '/'; return; }
+      // Rewrite URL to clean format if not already there
+      if (!slugMatch) history.replaceState({}, '', '/projetos/' + id);
 
       const all    = await ProjectStore.get();
       const sorted = ProjectStore.sorted(all);
       const idx    = sorted.findIndex(p => p.id === id);
-      if (idx === -1) { location.href = 'index.html'; return; }
+      if (idx === -1) { location.href = '/'; return; }
 
       const project = sorted[idx];
       document.title = `${project.title} — Claudio Duclos`;
@@ -982,7 +985,7 @@
       const nextEl = document.getElementById('proj-next');
 
       if (prev) {
-        prevEl.href = `project.html?id=${prev.id}`;
+        prevEl.href = `/projetos/${prev.id}`;
         document.getElementById('prev-title').textContent = prev.title;
       } else {
         prevEl.style.opacity = '.25';
@@ -990,7 +993,7 @@
         document.getElementById('prev-title').textContent = '—';
       }
       if (next) {
-        nextEl.href = `project.html?id=${next.id}`;
+        nextEl.href = `/projetos/${next.id}`;
         document.getElementById('next-title').textContent = next.title;
       } else {
         nextEl.style.opacity = '.25';
