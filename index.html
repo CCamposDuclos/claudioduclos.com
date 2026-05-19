@@ -58,6 +58,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 24px 48px;
+      transition: background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+    }
+    nav.scrolled {
+      background: rgba(8,8,8,.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
     .nav-logo {
       font-size: 15px;
@@ -159,9 +166,11 @@
     }
     /* botão outline discreto */
     .hero-btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       margin-top: 44px;
-      padding: 14px 36px;
+      padding: 14px 20px 14px 36px;
       background: #fff;
       border: 1px solid #fff;
       border-radius: 24px;
@@ -171,9 +180,22 @@
       font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
-      transition: opacity .2s;
+      transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .hero-btn:hover { opacity: .88; }
+    .hero-btn:hover { transform: scale(1.06); }
+    .hero-btn-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #0d0d0d;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hero-btn:hover .hero-btn-arrow { transform: rotate(45deg); }
 
     .hero-bar {
       position: absolute;
@@ -928,7 +950,14 @@
       <img class="hero-avatar" src="assets/avatar.jpg" alt="Claudio Duclos" width="80" height="80" fetchpriority="high">
       <h1 class="hero-name">UI/UX Designer com 5 anos de experiência em produtos digitais</h1>
       <p class="hero-sub">Especialista em SaaS, fintechs e muitos outros segmentos que não cabem em uma só descrição. O que vamos criar juntos?</p>
-      <a href="https://wa.me/5515998039816" target="_blank" class="hero-btn">VAMOS CONVERSAR 💬</a>
+      <a href="https://wa.me/5515998039816" target="_blank" class="hero-btn">
+        VAMOS CONVERSAR
+        <span class="hero-btn-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </span>
+      </a>
     </div>
     <!-- <div class="hero-bar">
       <span>UI/UX Designer</span>
