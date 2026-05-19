@@ -62,6 +62,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 24px 48px;
+      border-bottom: 1px solid transparent;
       transition: background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
     }
     nav.scrolled {
@@ -1253,7 +1254,8 @@
       const section = document.getElementById('sobre');
       const rect = section.getBoundingClientRect();
       const vh = window.innerHeight;
-      const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height * .6)));
+      const raw = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height * .15)));
+      const progress = Math.pow(raw, 0.6);
       const lit = Math.round(progress * total);
       words.forEach((w, i) => w.classList.toggle('lit', i < lit));
     }
