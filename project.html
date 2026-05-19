@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto — Claudio Duclos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #080808;
+      --border: rgba(255,255,255,0.08);
+      --white: #f2f2f2;
+      --muted: #777;
+      --sans: 'Inter', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 52px;
+      transition: background .3s;
+    }
+    nav.scrolled {
+      background: rgba(8,8,8,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -.01em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: rgba(242,242,242,.55);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ── HERO ────────────────────────────────────── */
+    .proj-hero {
+      position: relative;
+      height: 80vh;
+      min-height: 520px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .proj-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    .proj-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,.9) 0%, rgba(8,8,8,.3) 55%, transparent 100%);
+    }
+    .proj-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 52px 56px;
+      width: 100%;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(242,242,242,.45);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color .2s;
+    }
+    .back-btn:hover { color: var(--white); }
+    .proj-hero-meta {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .proj-category-badge,
+    .proj-year-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .proj-title {
+      font-size: clamp(36px, 6.5vw, 88px);
+      font-weight: 700;
+      letter-spacing: -.05em;
+      line-height: .92;
+      text-transform: uppercase;
+    }
+
+    /* ── CENTERED WRAP ───────────────────────────── */
+    .proj-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 48px 120px;
+    }
+
+    /* ── META STRIP ──────────────────────────────── */
+    .proj-meta {
+      display: flex;
+      gap: 52px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 44px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .proj-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .meta-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .meta-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      color: rgba(242,242,242,.6);
+    }
+
+    /* link button */
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 11px 24px;
+      border-radius: 10px;
+      border: 1px solid rgba(242,242,242,.22);
+      color: var(--white);
+      transition: background .2s, border-color .2s;
+      white-space: nowrap;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+    .btn-link:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
+
+    /* ── DESCRIPTION ─────────────────────────────── */
+    .proj-desc {
+      font-size: clamp(17px, 1.7vw, 22px);
+      font-weight: 300;
+      line-height: 1.78;
+      color: rgba(242,242,242,.8);
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .proj-desc:last-child { border-bottom: none; padding-bottom: 0; }
+
+    /* ── CONTENT BLOCKS ──────────────────────────── */
+    .proj-content {
+      padding-top: 52px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .proj-content:empty { padding-top: 0; }
+
+    /* section block (title + body together) */
+    .c-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .c-section-title {
+      font-size: clamp(19px, 2vw, 26px);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1.2;
+      color: var(--white);
+    }
+    .c-section-body {
+      font-size: clamp(15px, 1.4vw, 18px);
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(242,242,242,.68);
+      white-space: pre-wrap;
+    }
+
+    /* standalone heading block */
+    .c-heading {
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight: 700;
+      letter-spacing: -.035em;
+      line-height: 1.15;
+      color: var(--white);
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* text block */
+    .c-text {
+      font-size: clamp(15px, 1.4vw, 18px);
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(242,242,242,.68);
+      white-space: pre-wrap;
+    }
+
+    /* single image */
+    .c-image {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .c-image img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* duo images */
+    .c-duo {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .c-duo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .c-duo-grid img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 12px;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ── SLIDER ──────────────────────────────────── */
+    .c-slider { display: flex; flex-direction: column; gap: 14px; }
+    .c-slider-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #111;
+      user-select: none;
+    }
+    .c-slider-track {
+      display: flex;
+      will-change: transform;
+      transition: transform .42s cubic-bezier(.25,.46,.45,.94);
+    }
+    .c-slider-track img {
+      flex-shrink: 0;
+      width: 100%;
+      max-height: 560px;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+    .c-slider-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(8,8,8,.58);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.18);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background .2s, opacity .2s;
+      z-index: 2;
+    }
+    .c-slider-btn:hover { background: rgba(8,8,8,.82); }
+    .c-slider-btn.prev { left: 14px; }
+    .c-slider-btn.next { right: 14px; }
+    .c-slider-btn:disabled { opacity: .2; pointer-events: none; }
+    .c-slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+    }
+    .c-slider-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.22);
+      cursor: pointer;
+      transition: background .25s, transform .25s;
+      border: none;
+      padding: 0;
+    }
+    .c-slider-dot.active {
+      background: var(--white);
+      transform: scale(1.35);
+    }
+
+    /* shared caption */
+    .c-caption {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── PREV / NEXT ─────────────────────────────── */
+    .proj-nav {
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .proj-nav-item {
+      display: block;
+      padding: 48px 52px;
+      text-decoration: none;
+      color: inherit;
+      transition: background .2s;
+    }
+    .proj-nav-item:hover { background: rgba(255,255,255,.03); }
+    .proj-nav-item + .proj-nav-item { border-left: 1px solid var(--border); }
+    .proj-nav-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .proj-nav-title {
+      font-size: clamp(17px, 2.2vw, 26px);
+      font-weight: 700;
+      letter-spacing: -.03em;
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      color: #444;
+    }
+
+    /* ── SKELETON ────────────────────────────────── */
+    .skeleton {
+      background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 4px;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ── FADE ────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .fade-in.in { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .proj-hero-content { padding: 0 24px 40px; }
+      .proj-wrap { padding: 0 28px 100px; }
+      .proj-meta { gap: 36px; padding: 36px 0; }
+      .proj-nav-item { padding: 36px 28px; }
+      footer { padding: 28px 24px; }
+    }
+    @media (max-width: 640px) {
+      .proj-wrap { padding: 0 20px 80px; }
+      .proj-meta { gap: 24px; flex-direction: column; padding: 28px 0; }
+      .btn-link { margin-left: 0; align-self: flex-start; }
+      .c-duo-grid { grid-template-columns: 1fr; }
+      .proj-nav { grid-template-columns: 1fr; }
+      .proj-nav-item + .proj-nav-item { border-left: none; border-top: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">Claudio Duclos</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projetos">Trabalhos</a></li>
+      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="proj-hero">
+    <div class="proj-hero-bg skeleton" id="proj-bg" style="min-height:520px"></div>
+    <div class="proj-hero-overlay"></div>
+    <div class="proj-hero-content">
+      <a href="index.html#projetos" class="back-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+        </svg>
+        Todos os Projetos
+      </a>
+      <div class="proj-hero-meta">
+        <span class="proj-category-badge" id="proj-category"></span>
+        <span class="proj-year-badge" id="proj-year"></span>
+      </div>
+      <h1 class="proj-title" id="proj-title">&nbsp;</h1>
+    </div>
+  </section>
+
+  <!-- CENTERED COLUMN -->
+  <div class="proj-wrap">
+
+    <!-- Meta strip -->
+    <div class="proj-meta fade-in">
+      <div class="proj-meta-item">
+        <span class="meta-label">Cliente</span>
+        <span class="meta-value" id="proj-client"></span>
+      </div>
+      <div class="proj-meta-item">
+        <span class="meta-label">Ano</span>
+        <span class="meta-value" id="proj-year-2"></span>
+      </div>
+      <div class="proj-meta-item">
+        <span class="meta-label">Área</span>
+        <div class="proj-tags" id="proj-tags"></div>
+      </div>
+      <a id="proj-link" href="#" target="_blank" rel="noopener" class="btn-link" style="display:none">
+        Ver Projeto ↗
+      </a>
+    </div>
+
+    <!-- Short description -->
+    <p class="proj-desc fade-in" id="proj-desc"></p>
+
+    <!-- Body content blocks -->
+    <div class="proj-content" id="proj-content"></div>
+
+  </div>
+
+  <!-- PREV / NEXT -->
+  <section class="proj-nav">
+    <a class="proj-nav-item" id="proj-prev" href="#">
+      <div class="proj-nav-label">← Anterior</div>
+      <div class="proj-nav-title" id="prev-title"></div>
+    </a>
+    <a class="proj-nav-item" id="proj-next" href="#">
+      <div class="proj-nav-label">Próximo →</div>
+      <div class="proj-nav-title" id="next-title"></div>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Claudio Duclos</span>
+    <span>Espero que tenha curtido!</span>
+  </footer>
+
+  <script>
+    // ── ProjectStore ─────────────────────────────────────────────
+    const ProjectStore = (() => {
+      const KEY = 'cd_projects_v1';
+      return {
+        async get() {
+          const sess = sessionStorage.getItem(KEY);
+          if (sess) return JSON.parse(sess);
+          const local = localStorage.getItem(KEY);
+          if (local) { sessionStorage.setItem(KEY, local); return JSON.parse(local); }
+          const res  = await fetch('data/projects.json');
+          const data = await res.json();
+          sessionStorage.setItem(KEY, JSON.stringify(data));
+          return data;
+        },
+        sorted(projects) {
+          return [...projects].sort((a, b) => a.order - b.order);
+        }
+      };
+    })();
+
+    // ── Safe HTML escape ─────────────────────────────────────────
+    function esc(str = '') {
+      return String(str)
+        .replace(/&/g,'&amp;').replace(/"/g,'&quot;')
+        .replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    // ── Render body blocks ────────────────────────────────────────
+    function renderBlocks(body) {
+      if (!body || body.length === 0) return '';
+      return body.map(b => {
+        if (b.type === 'section') {
+          return `
+            <div class="c-section fade-in">
+              <h2 class="c-section-title">${esc(b.title)}</h2>
+              <p class="c-section-body">${esc(b.value)}</p>
+            </div>`;
+        }
+        if (b.type === 'heading') {
+          return `<h2 class="c-heading fade-in">${esc(b.value)}</h2>`;
+        }
+        if (b.type === 'text') {
+          return `<p class="c-text fade-in">${esc(b.value)}</p>`;
+        }
+        if (b.type === 'slider' && b.images && b.images.length) {
+          const imgs   = b.images.filter(img => img.src);
+          if (!imgs.length) return '';
+          const slides = imgs.map(img => `<img src="${esc(img.src)}" alt="${esc(img.alt||'')}" loading="lazy">`).join('');
+          const dots   = imgs.map((_, i) => `<button class="c-slider-dot${i === 0 ? ' active' : ''}" aria-label="Slide ${i+1}"></button>`).join('');
+          const cap    = b.caption ? `<p class="c-caption">${esc(b.caption)}</p>` : '';
+          return `
+            <div class="c-slider fade-in" data-slider>
+              <div class="c-slider-wrap">
+                <div class="c-slider-track">${slides}</div>
+                <button class="c-slider-btn prev" aria-label="Anterior">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="c-slider-btn next" aria-label="Próximo">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+              ${imgs.length > 1 ? `<div class="c-slider-dots">${dots}</div>` : ''}
+              ${cap}
+            </div>`;
+        }
+        if (b.type === 'image' && b.src) {
+          const cap = b.caption ? `<p class="c-caption">${esc(b.caption)}</p>` : '';
+          return `
+            <div class="c-image fade-in">
+              <img src="${esc(b.src)}" alt="${esc(b.alt || '')}" loading="lazy">
+              ${cap}
+            </div>`;
+        }
+        if (b.type === 'duo' && (b.src1 || b.src2)) {
+          const cap = b.caption ? `<p class="c-caption">${esc(b.caption)}</p>` : '';
+          const img1 = b.src1 ? `<img src="${esc(b.src1)}" alt="${esc(b.alt1||'')}" loading="lazy">` : '';
+          const img2 = b.src2 ? `<img src="${esc(b.src2)}" alt="${esc(b.alt2||'')}" loading="lazy">` : '';
+          return `
+            <div class="c-duo fade-in">
+              <div class="c-duo-grid">${img1}${img2}</div>
+              ${cap}
+            </div>`;
+        }
+        return '';
+      }).join('');
+    }
+
+    // ── Slider init ───────────────────────────────────────────────
+    function initSliders() {
+      document.querySelectorAll('[data-slider]').forEach(el => {
+        const track = el.querySelector('.c-slider-track');
+        const dots  = [...el.querySelectorAll('.c-slider-dot')];
+        const total = track.querySelectorAll('img').length;
+        if (total <= 1) {
+          el.querySelectorAll('.c-slider-btn').forEach(b => b.style.display = 'none');
+          return;
+        }
+        let cur = 0;
+
+        function goTo(n) {
+          cur = (n + total) % total;
+          track.style.transform = `translateX(-${cur * 100}%)`;
+          dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+        }
+
+        el.querySelector('.c-slider-btn.prev').addEventListener('click', () => goTo(cur - 1));
+        el.querySelector('.c-slider-btn.next').addEventListener('click', () => goTo(cur + 1));
+        dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+        // Swipe support
+        let startX = 0;
+        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchend',   e => {
+          const dx = e.changedTouches[0].clientX - startX;
+          if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
+        }, { passive: true });
+      });
+    }
+
+    // ── Fade-in observer ──────────────────────────────────────────
+    const fadeObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          fadeObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    function observeFades() {
+      document.querySelectorAll('.fade-in:not(.in)').forEach(el => fadeObserver.observe(el));
+    }
+
+    // ── Nav scroll ───────────────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Parallax hero ────────────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      const bg = document.getElementById('proj-bg');
+      if (bg) bg.style.transform = `translateY(${window.scrollY * 0.22}px)`;
+    }, { passive: true });
+
+    // ── Init ─────────────────────────────────────────────────────
+    async function init() {
+      const params = new URLSearchParams(location.search);
+      const id = params.get('id');
+      if (!id) { location.href = 'index.html'; return; }
+
+      const all    = await ProjectStore.get();
+      const sorted = ProjectStore.sorted(all);
+      const idx    = sorted.findIndex(p => p.id === id);
+      if (idx === -1) { location.href = 'index.html'; return; }
+
+      const project = sorted[idx];
+      document.title = `${project.title} — Claudio Duclos`;
+
+      // ── Hero background (cover image OR gradient fallback)
+      const bg = document.getElementById('proj-bg');
+      bg.classList.remove('skeleton');
+      if (project.coverImage) {
+        bg.style.backgroundImage    = `url(${project.coverImage})`;
+        bg.style.backgroundSize     = 'cover';
+        bg.style.backgroundPosition = 'center';
+      } else {
+        bg.style.background = project.gradient || '#111';
+      }
+
+      // ── Hero text
+      document.getElementById('proj-category').textContent = project.category || '';
+      document.getElementById('proj-year').textContent     = project.year     || '';
+      document.getElementById('proj-title').textContent    = project.title    || '';
+
+      // ── Info row
+      document.getElementById('proj-client').textContent  = project.client || '—';
+      document.getElementById('proj-year-2').textContent  = project.year   || '—';
+      document.getElementById('proj-tags').innerHTML       =
+        (project.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('');
+
+      if (project.link) {
+        const linkEl = document.getElementById('proj-link');
+        linkEl.href = project.link;
+        linkEl.style.display = 'inline-flex';
+      }
+
+      // ── Short description
+      document.getElementById('proj-desc').textContent = project.description || '';
+
+      // ── Body content blocks
+      const content = document.getElementById('proj-content');
+      content.innerHTML = renderBlocks(project.body);
+
+      // ── Prev / Next
+      const prev   = sorted[idx - 1];
+      const next   = sorted[idx + 1];
+      const prevEl = document.getElementById('proj-prev');
+      const nextEl = document.getElementById('proj-next');
+
+      if (prev) {
+        prevEl.href = `project.html?id=${prev.id}`;
+        document.getElementById('prev-title').textContent = prev.title;
+      } else {
+        prevEl.style.opacity = '.25';
+        prevEl.style.pointerEvents = 'none';
+        document.getElementById('prev-title').textContent = '—';
+      }
+      if (next) {
+        nextEl.href = `project.html?id=${next.id}`;
+        document.getElementById('next-title').textContent = next.title;
+      } else {
+        nextEl.style.opacity = '.25';
+        nextEl.style.pointerEvents = 'none';
+        document.getElementById('next-title').textContent = '—';
+      }
+
+      // ── Init sliders and fade animations
+      initSliders();
+      requestAnimationFrame(() => observeFades());
+    }
+
+    init();
+  </script>
+</body>
+</html>

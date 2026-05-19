@@ -1,0 +1,50 @@
+[
+  {
+    "id": "fintech-dashboard",
+    "title": "Fintech Dashboard",
+    "client": "Fintec Corp",
+    "category": "UX Design · Desenvolvimento",
+    "year": "2025",
+    "description": "Um dashboard financeiro completo com visualizações de dados em tempo real, gestão de portfólio e análise preditiva. O projeto envolveu pesquisa extensa com usuários, prototipagem iterativa e desenvolvimento frontend com foco em performance e usabilidade em cenários de alta densidade de informação.",
+    "tags": ["UX Design", "Desenvolvimento", "React", "Data Viz"],
+    "gradient": "linear-gradient(135deg, #0d1b3e 0%, #1a2d5a 40%, #0a1628 100%)",
+    "link": "",
+    "order": 1
+  },
+  {
+    "id": "nomad-app",
+    "title": "Nomad App",
+    "client": "Nomad Inc.",
+    "category": "Mobile · Product Design",
+    "year": "2025",
+    "description": "Aplicativo mobile para nômades digitais com funcionalidades de gestão de rotinas, espaços de trabalho e comunidade. Design focado em clareza e rapidez de uso, com onboarding simplificado, navegação intuitiva e suporte offline para uso em qualquer lugar do mundo.",
+    "tags": ["Mobile", "Product Design", "Figma", "iOS"],
+    "gradient": "linear-gradient(145deg, #2a1106 0%, #1a0a00 60%, #0d0500 100%)",
+    "link": "",
+    "order": 2
+  },
+  {
+    "id": "brand-system",
+    "title": "Brand System",
+    "client": "Volta Studio",
+    "category": "Branding · Web Design",
+    "year": "2024",
+    "description": "Sistema de identidade visual completo para uma agência criativa, incluindo logo, tipografia, paleta de cores, iconografia e aplicações digitais e físicas. O projeto resultou em um brand book de 80 páginas e um design system web implementado em produção.",
+    "tags": ["Branding", "Web Design", "Identidade Visual", "Design System"],
+    "gradient": "linear-gradient(135deg, #091f1f 0%, #0d2d2d 60%, #061414 100%)",
+    "link": "",
+    "order": 3
+  },
+  {
+    "id": "ai-studio",
+    "title": "AI Studio",
+    "client": "Synthex Labs",
+    "category": "Interface · Desenvolvimento",
+    "year": "2024",
+    "description": "Interface para uma ferramenta de criação com IA generativa. O desafio foi tornar um produto técnico complexo acessível e intuitivo para criadores não-técnicos, com foco em fluxos de trabalho rápidos, feedback visual rico e experiência fluida em todas as etapas do processo criativo.",
+    "tags": ["Interface", "Desenvolvimento", "AI", "Design System"],
+    "gradient": "linear-gradient(135deg, #130d25 0%, #1e1040 60%, #0a0618 100%)",
+    "link": "",
+    "order": 4
+  }
+]
