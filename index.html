@@ -18,6 +18,7 @@
   <meta name="twitter:title"       content="Claudio Duclos — UI/UX Designer">
   <meta name="twitter:description" content="UI/UX Designer com 5 anos de experiência em produto digital.">
 
+  <link rel="preload" as="image" href="assets/avatar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -684,15 +685,9 @@
       to { transform: translateY(0); }
     }
 
-    /* site content hidden until preloader exits */
+    /* preloader covers content visually — no opacity:0 needed (would block LCP) */
     #site-wrap {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .8s ease, transform .8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    #site-wrap.ready {
-      opacity: 1;
-      transform: translateY(0);
+      transition: transform .8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* ── BURGER ──────────────────────────────────────── */
@@ -929,7 +924,7 @@
     </div>
 
     <div class="hero-content">
-      <img class="hero-avatar" src="assets/avatar.jpg" alt="Claudio Duclos">
+      <img class="hero-avatar" src="assets/avatar.jpg" alt="Claudio Duclos" width="80" height="80" fetchpriority="high">
       <h1 class="hero-name">UI/UX Designer com 5 anos de experiência em produtos digitais</h1>
       <p class="hero-sub">Especialista em SaaS, fintechs e muitos outros segmentos que não cabem em uma só descrição. O que vamos criar juntos?</p>
       <a href="https://wa.me/5515998039816" target="_blank" class="hero-btn">VAMOS CONVERSAR 💬</a>
@@ -1374,10 +1369,7 @@
         // double rAF: browser paints one frame at opacity:0 before switching to 1,
         // guaranteeing the CSS transition fires reliably across all browsers
         requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            document.getElementById('site-wrap').classList.add('ready');
           });
-        });
       }, exitAt);
     })();
   </script>
